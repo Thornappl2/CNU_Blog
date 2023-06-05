@@ -27,10 +27,10 @@ export const getPostById = (id: string) => {
   return instance.get(`/post/${id}`);
 };
 
-export const updatePostById = (id: string, title: string, content: TAG) => {
+export const updatePostById = (id: string, title: string, contents: TAG) => {
   return instance.put(`/posts/${id}`, {
     title,
-    content,
+    contents,
     tag,
   });
 };
