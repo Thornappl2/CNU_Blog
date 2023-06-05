@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
-import { IPostWithAd, IResponsePostList } from './types';
+import {IPostWithAd, IResponsePostList, TAG} from './types';
+import tag from "../components/Tag.tsx";
 
 const instance = axios.create({
   headers: {
@@ -14,18 +15,26 @@ export const getPostList = (): Promise<AxiosResponse<IResponsePostList>> => {
   return instance.get('/posts');
 };
 
-export const createPost = () => {
-  return null;
+export const createPost = (title: string, contents: string, tag: string) => {
+  return instance.post('/posts', {
+    title,
+    contents,
+    tag,
+  });
 };
 
-export const getPostById = (id: number) => {
+export const getPostById = (id: string) => {
   return instance.get(`/post/${id}`);
 };
 
-export const updatePostById = () => {
-  return null;
+export const updatePostById = (id: string, title: string, content: TAG) => {
+  return instance.put(`/posts/${id}`, {
+    title,
+    content,
+    tag,
+  });
 };
 
-export const deletePostById = () => {
-  return null;
+export const deletePostById = (id: string) => {
+  return instance.delete(`/post/${id}`);
 };
